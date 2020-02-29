@@ -20,4 +20,7 @@
 >- docker run -d -p 8080:8080 springio/account
 
 
-
+**Zuul gateway service**
+>- ./mvnw clean install
+>- docker build -t springio/gateway-service .
+>- docker run -d -p 8080:8080 springio/gateway-service
