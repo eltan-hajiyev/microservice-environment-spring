@@ -7,17 +7,17 @@
 **Authorization service**
 >- ./mvnw clean install
 >- docker build -t springio/authorization .
->- docker run -d -p 8080:8080 springio/authorization
+>- docker run -d springio/authorization
 
 **Message service**
 >- ./mvnw clean install
 >- docker build -t springio/message-service .
->- docker run -d -p 8080:8080 springio/message-service
+>- docker run -d springio/message-service
 
 **Account service**
 >- ./mvnw clean install
 >- docker build -t springio/account .
->- docker run -d -p 8080:8080 springio/account
+>- docker run -d springio/account
 
 
 **Zuul gateway service**
