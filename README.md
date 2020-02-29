@@ -1,4 +1,4 @@
-# **Microservice environment for Spring Boot and Docker**
+# **Microservice environment with Spring Boot and Docker**
 
 **Discovery service**
 >- docker pull consul
