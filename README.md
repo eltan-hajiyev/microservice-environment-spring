@@ -2,7 +2,7 @@
 
 **Discovery service**
 >- docker pull consul
->- docker run -d --name=dev-consul  consul
+>- docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 consul
 
 **Authorization service**
 >- ./mvnw clean install
