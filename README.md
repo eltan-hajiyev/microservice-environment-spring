@@ -1,7 +1,8 @@
 # **Microservice environment with Spring Boot and Docker**
 
 **Internal service**
-First you need add "internal-service-payday" project to local repository.
+Interface for all shared services we hold in one project.
+First you need add "internal-service-payday" project to local repository. In order to do that you should call next command.
 >- ./mvnw clean instsll
 
 **Discovery service**
