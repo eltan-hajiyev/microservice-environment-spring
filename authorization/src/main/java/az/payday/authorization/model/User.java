@@ -3,6 +3,7 @@ package az.payday.authorization.model;
 import java.io.Serializable;
 import java.time.Instant;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +27,8 @@ public class User implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String phone;
+
+	@Column(unique = true, length = 10)
 	private String email;
 	private String password;
 	private String salt;

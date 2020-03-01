@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,7 @@ import az.payday.account.repository.AccountRepository;
 import excludeautoscan.internal_service.intrface.a003.UserIDTO;
 
 @RestController
+@RequestMapping("/")
 public class AccountController {
 	@Autowired
 	AccountRepository accountRepository;
@@ -31,7 +33,7 @@ public class AccountController {
 		account.setAccountType(accountDTO.getAccountType());
 	}
 
-	@GetMapping("/account/all")
+	@GetMapping("/all")
 	public List<AccountDTO> getAllAcounts(@RequestParam(required = false) Integer idAccount) {
 		UserIDTO user = UserDetails.getUserIDTO();
 
@@ -45,7 +47,7 @@ public class AccountController {
 		}).collect(Collectors.toList());
 	}
 
-	@GetMapping("/account/idAccount")
+	@GetMapping("/idAccount")
 	public AccountDTO getAcountById(@RequestParam(required = false) Integer idAccount) {
 		UserIDTO user = UserDetails.getUserIDTO();
 
@@ -56,4 +58,6 @@ public class AccountController {
 
 		return accountDTO;
 	}
+	
+	
 }

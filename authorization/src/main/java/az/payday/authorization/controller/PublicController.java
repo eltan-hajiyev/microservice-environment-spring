@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import az.payday.authorization.dto.AuthorizationDTO;
@@ -11,7 +12,8 @@ import az.payday.authorization.model.User;
 import az.payday.authorization.model.config.UserStatus;
 import az.payday.authorization.repository.UserRepository;
 
-@RestController("/public")
+@RestController
+@RequestMapping("/public")
 public class PublicController {
 	@Autowired
 	UserRepository userRepository;

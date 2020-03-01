@@ -10,13 +10,13 @@ import lombok.Data;
 
 @Data
 public class AuthorizationDTO {
-	@NotBlank
+	@NotBlank(message = "firstname can't be blank")
 	private String firstName;
-	@NotBlank
+	@NotBlank(message = "lastname can't be blank")
 	private String lastName;
-	@NotBlank
+	@NotBlank(message = "Phone can't be blank")
 	private String phone;
-	@Email
+	@Email(message = "Wrong email address")
 	private String email;
 	@NotBlank
 	private String password;

@@ -1,5 +1,7 @@
 package az.payday.messageservice;
 
+import java.util.Base64;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,21 +14,22 @@ import excludeautoscan.internal_service.intrface.a003.UserIDTO;
 
 @Component
 public class UserDetails {
-	
+
 	private static AuthorizationServiceInterface authorizationServiceInterface;
-	
+
 	@Autowired
 	public UserDetails(AuthorizationServiceInterface authorizationServiceInterface) {
-		UserDetails.authorizationServiceInterface = authorizationServiceInterface;;
+		UserDetails.authorizationServiceInterface = authorizationServiceInterface;
+		
 	}
-	
+
 	public static UserIDTO getUserIDTO() {
-		HttpServletRequest request = 
-		        ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes())
-		                .getRequest();
-		
-		String token = request.getHeader("Authorization");
-		
-		return authorizationServiceInterface.getUser(token);
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+				.getRequest();
+
+		String token = request.getHeader("Authorization").split(" ")[1];
+		String email = new String(Base64.getDecoder().decode(token.getBytes())).split(":")[1];
+
+		return authorizationServiceInterface.getUserByEmail(email);
 	}
 }

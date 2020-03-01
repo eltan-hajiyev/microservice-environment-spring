@@ -14,6 +14,9 @@ public interface AuthorizationServiceInterface {
 	@GetMapping("/check-token")
 	Boolean checkToken(@RequestParam("token") String token);
 
-	@GetMapping("/get-user")
-	UserIDTO getUser(@RequestParam("token") String token);
+	@GetMapping("/get-user-bytoken")
+	UserIDTO getUserByToken(@RequestParam("token") String token);
+	
+	@GetMapping("/get-user-byemail")
+	UserIDTO getUserByEmail(@RequestParam("email") String email);
 }

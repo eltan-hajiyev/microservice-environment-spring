@@ -26,9 +26,6 @@ public class SendMailTask {
 
 		List<Message> messageList = messageRepository
 				.findByStatusAndInsertDateGreaterThan(MessageStatus.INITIAL.getValue(), date);
-		
-		System.out.println(date);
-		System.out.println(messageList.size());
 
 		for (Message message : messageList) {
 			sendEamil(message);
