@@ -1,0 +1,16 @@
+
+zuul:
+  routes:
+    account:
+      path: /account/**
+      serviceId: account
+    authorization:
+      path: /authorization/**
+      serviceId: authorization
+    message:
+      path: /message/**
+      serviceId: message
+
+
+  sensitive-headers: null
+  

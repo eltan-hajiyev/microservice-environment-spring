@@ -1,0 +1,10 @@
+server:
+  port: 8092
+
+spring:
+  application:
+    name: message
+  cloud:
+    consul:
+      discovery:
+        prefer-ip-address: true

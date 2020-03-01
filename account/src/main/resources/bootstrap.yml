@@ -1,0 +1,10 @@
+server:
+  port: 8091
+
+spring:
+  application:
+    name: account
+  cloud:
+    consul:
+      discovery:
+        prefer-ip-address: true
