@@ -1,5 +1,9 @@
 # **Microservice environment with Spring Boot and Docker**
 
+**Internal service**
+First you need add "internal-service-payday" project to local repository.
+>- ./mvnw clean instsll
+
 **Discovery service**
 >- docker pull consul
 >- docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 consul
