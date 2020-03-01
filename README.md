@@ -4,7 +4,8 @@
  Interface for all shared services we hold in one project. First you need add "internal-service-payday" project to local repository. In order to do that you should call next command.
 >- ./mvnw clean instsll
 
-**Discovery service**
+**Discovery service**:
+You should start "consul" (discovery service) for register microservices.
 >- docker pull consul
 >- docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 consul
 
