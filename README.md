@@ -2,7 +2,7 @@
 
  **Internal service:**
  Interface for all shared services we hold in one project. First you need add "internal-service-payday" project to local repository. In order to do that you should call next command. 
- We overrided @org.springframework.web.bind.annotation.RequestMapping and created @InternalService annotation. All internal servicel have "/internal/\*\*" path. For security, we have denyAll() for this path in zuul project.
+ We overrided @org.springframework.web.bind.annotation.RequestMapping and created @InternalService annotation. All internal services have "/internal/\*\*" path. For security, we have denyAll() for this path in zuul project.
 >- ./mvnw clean instsll
 
 **Discovery service**:
