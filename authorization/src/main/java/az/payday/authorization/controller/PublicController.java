@@ -1,9 +1,13 @@
 package az.payday.authorization.controller;
 
+import java.util.Base64;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +38,20 @@ public class PublicController {
 		user.setPassword(cryptPasswordEncoder.encode(authorizationDTO.getPassword()));
 		user.setStatus(UserStatus.WAITING_ACTIVATION.getValue());
 
+		userRepository.save(user);
+	}
+	
+	/**
+	 * 
+	 * @param emailConfirmKey
+	 * 
+	 * I know it's wrong. But it just for test now.
+	 */
+	@GetMapping("/{emailConfirmKey}")
+	public void emailConfirm(@PathVariable("emailConfirmKey") String emailConfirmKey) {
+		String email = new String(Base64.getDecoder().decode(emailConfirmKey));
+		User user = userRepository.findByEmail(email);
+		user.setStatus(UserStatus.ACTIVE.getValue());
 		userRepository.save(user);
 	}
 }

@@ -40,4 +40,5 @@ public class User implements Serializable {
 	@Setter(AccessLevel.NONE)
 	private Instant insertDate = Instant.now();
 	private Short status;
+	
 }

@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,12 +33,13 @@ public class AccountController {
 		Account account = new Account();
 		account.setIdUser(user.getId());
 		account.setAccountType(accountDTO.getAccountType());
+		account.setBalance(50000);
 
 		accountRepository.save(account);
 	}
 
 	@GetMapping("/all")
-	public List<AccountDTORes> getAllAcounts(@RequestParam(required = false) Integer idAccount) {
+	public List<AccountDTORes> getAllAcounts() {
 		UserIDTO user = UserDetails.getUserIDTO();
 
 		List<Account> accountlist = accountRepository.findByIdUser(user.getId());
@@ -51,14 +53,19 @@ public class AccountController {
 		}).collect(Collectors.toList());
 	}
 
-	@GetMapping("/idAccount")
-	public AccountDTORes getAcountById(@RequestParam(required = false) Integer idAccount) {
+	@GetMapping("/{idAccount}")
+	public AccountDTORes getAcountById(@PathVariable("idAccount") Integer idAccount) {
 		UserIDTO user = UserDetails.getUserIDTO();
 
 		Account account = accountRepository.findByIdAndIdUser(idAccount, user.getId());
-		AccountDTORes accountDTO = new AccountDTORes();
-		accountDTO.setAccountType(account.getAccountType());
-		accountDTO.setIdUser(user.getId());
+		AccountDTORes accountDTO = null;
+
+		if (account != null) {
+			accountDTO = new AccountDTORes();
+			accountDTO.setAccountType(account.getAccountType());
+			accountDTO.setIdUser(user.getId());
+			accountDTO.setBalance(account.getBalance());
+		}
 
 		return accountDTO;
 	}

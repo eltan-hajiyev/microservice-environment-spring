@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import az.payday.authorization.model.User;
 import az.payday.authorization.model.UserSession;
+import az.payday.authorization.model.config.UserStatus;
 import az.payday.authorization.repository.UserRepository;
 import az.payday.authorization.repository.UserSessionRepository;
 import excludeautoscan.internal_service.intrface.a003.AuthorizationServiceInterface;
@@ -40,7 +41,7 @@ public class AuthorizationService implements AuthorizationServiceInterface {
 
 	@Override
 	public UserIDTO getUserByEmail(String email) {
-		User user = userRepository.findByEmail(email);
+		User user = userRepository.findByEmailAndStatus(email, UserStatus.ACTIVE.getValue());
 
 		UserIDTO userIDTO = new UserIDTO();
 		userIDTO.setId(user.getId());

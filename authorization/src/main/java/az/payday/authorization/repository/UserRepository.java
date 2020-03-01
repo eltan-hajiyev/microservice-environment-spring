@@ -9,5 +9,7 @@ import az.payday.authorization.model.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 	List<User> findByStatus(Short status);
 
+	User findByEmailAndStatus(String email, Short status);
+	
 	User findByEmail(String email);
 }
