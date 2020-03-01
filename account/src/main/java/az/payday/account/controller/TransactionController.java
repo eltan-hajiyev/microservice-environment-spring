@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import az.payday.account.UserDetails;
-import az.payday.account.dto.AccountDTO;
+import az.payday.account.dto.AccountDTORes;
 import az.payday.account.dto.TransactionDTO;
 import az.payday.account.model.Account;
 import az.payday.account.model.Transaction;

@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import az.payday.account.UserDetails;
-import az.payday.account.dto.AccountDTO;
+import az.payday.account.dto.AccountDTORes;
+import az.payday.account.dto.AccountDTOReq;
 import az.payday.account.model.Account;
 import az.payday.account.repository.AccountRepository;
 import excludeautoscan.internal_service.intrface.a003.UserIDTO;
@@ -25,39 +26,41 @@ public class AccountController {
 	AccountRepository accountRepository;
 
 	@PostMapping("/create")
-	public void createAccount(@Valid AccountDTO accountDTO) {
+	public void createAccount(@Valid AccountDTOReq accountDTO) {
 		UserIDTO user = UserDetails.getUserIDTO();
 
 		Account account = new Account();
 		account.setIdUser(user.getId());
 		account.setAccountType(accountDTO.getAccountType());
+
+		accountRepository.save(account);
 	}
 
 	@GetMapping("/all")
-	public List<AccountDTO> getAllAcounts(@RequestParam(required = false) Integer idAccount) {
+	public List<AccountDTORes> getAllAcounts(@RequestParam(required = false) Integer idAccount) {
 		UserIDTO user = UserDetails.getUserIDTO();
 
 		List<Account> accountlist = accountRepository.findByIdUser(user.getId());
 
 		return accountlist.stream().map(account -> {
-			AccountDTO accountDTO = new AccountDTO();
+			AccountDTORes accountDTO = new AccountDTORes();
 			accountDTO.setIdUser(account.getIdUser());
 			accountDTO.setAccountType(account.getAccountType());
+			accountDTO.setBalance(account.getBalance());
 			return accountDTO;
 		}).collect(Collectors.toList());
 	}
 
 	@GetMapping("/idAccount")
-	public AccountDTO getAcountById(@RequestParam(required = false) Integer idAccount) {
+	public AccountDTORes getAcountById(@RequestParam(required = false) Integer idAccount) {
 		UserIDTO user = UserDetails.getUserIDTO();
 
 		Account account = accountRepository.findByIdAndIdUser(idAccount, user.getId());
-		AccountDTO accountDTO = new AccountDTO();
+		AccountDTORes accountDTO = new AccountDTORes();
 		accountDTO.setAccountType(account.getAccountType());
 		accountDTO.setIdUser(user.getId());
 
 		return accountDTO;
 	}
-	
-	
+
 }

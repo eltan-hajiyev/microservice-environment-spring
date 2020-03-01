@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class TransactionDTO {
-	Integer idAccount;
-	String token;
+	private Integer idAccount;
+	private String token;
+	private Integer amount;
 }

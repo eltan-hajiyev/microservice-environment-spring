@@ -28,8 +28,10 @@ public class User implements Serializable {
 	private String lastName;
 	private String phone;
 
-	@Column(unique = true, length = 10)
+	@Column(unique = true, length = 50)
 	private String email;
+
+	@Column(length = 60)
 	private String password;
 	private String salt;
 	private Short gender;

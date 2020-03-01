@@ -32,4 +32,6 @@ public class Transaction implements Serializable {
 
 	@Setter(AccessLevel.NONE)
 	private Instant insertDate = Instant.now();
+	
+	private Integer amount;
 }

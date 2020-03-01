@@ -20,7 +20,6 @@ public class UserDetails {
 	@Autowired
 	public UserDetails(AuthorizationServiceInterface authorizationServiceInterface) {
 		UserDetails.authorizationServiceInterface = authorizationServiceInterface;
-		
 	}
 
 	public static UserIDTO getUserIDTO() {
@@ -28,7 +27,7 @@ public class UserDetails {
 				.getRequest();
 
 		String token = request.getHeader("Authorization").split(" ")[1];
-		String email = new String(Base64.getDecoder().decode(token.getBytes())).split(":")[1];
+		String email = new String(Base64.getDecoder().decode(token.getBytes())).split(":")[0];
 
 		return authorizationServiceInterface.getUserByEmail(email);
 	}
