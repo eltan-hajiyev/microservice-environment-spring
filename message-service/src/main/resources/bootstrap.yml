@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: message-service
+    name: message
   cloud:
     consul:
       discovery:
